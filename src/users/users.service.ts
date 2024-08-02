@@ -12,8 +12,8 @@ export class UsersService {
     private readonly usersRepository: Repository<UserEntity>,
   ) {}
 
-  create(user: CreateUserDto) {
-    const newUser = this.usersRepository.create(user);
+  create(createUserDto: CreateUserDto) {
+    const newUser = this.usersRepository.create(createUserDto);
     return this.usersRepository.save(newUser);
   }
 
@@ -25,9 +25,9 @@ export class UsersService {
     return this.usersRepository.findOne({ where: { id } });
   }
 
-  async update(id: number, user: UpdateUserDto) {
+  async update(id: number, updateUserDto: UpdateUserDto) {
     const updatingUser = await this.findOne(id);
-    return this.usersRepository.save({ ...updatingUser, ...user });
+    return this.usersRepository.save({ ...updatingUser, ...updateUserDto });
   }
 
   async remove(id: number) {
